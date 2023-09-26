@@ -1,4 +1,4 @@
-package integration
+package domain
 
 import (
 	"context"

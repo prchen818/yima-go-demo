@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/consul/api"
 	"github.com/hertz-contrib/registry/consul"
 	"log"
-	"yima_user_app/integration"
+	"yima_user_app/domain"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
 	h.Spin()
 
 	k := yimademouser.NewServer(
-		new(integration.YimaDemoUserImpl),
+		new(domain.YimaDemoUserImpl),
 		kserver.WithRegistryInfo(&registry2.Info{
 			ServiceName: "yima.demo.news",
 			Addr:        utils.NewNetAddr("tcp", "127.0.0.1:8889"),

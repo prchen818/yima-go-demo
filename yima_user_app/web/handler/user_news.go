@@ -7,7 +7,7 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"yima_user_app/core/yima_user_service"
-	"yima_user_app/domain"
+	"yima_user_app/integration"
 )
 
 type GetAllNewsByUserResponse struct {
@@ -20,7 +20,7 @@ type GetAllNewsByUserResponse struct {
 func GetAllNewsByUser(ctx context.Context, c *app.RequestContext) {
 	uid := c.Query("uid")
 
-	newss, err := domain.GetAllNewsByUid(ctx, uid)
+	newss, err := integration.GetAllNewsByUid(ctx, uid)
 	if err != nil {
 		logger.CtxErrorf(ctx, "[GetAllNewsByUser]err: %v", err)
 		return
