@@ -4,7 +4,7 @@ package main
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	router "yima_user_app/biz/router"
+	"yima_user_app/web/router"
 )
 
 // register registers all routers.

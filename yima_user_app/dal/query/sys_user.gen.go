@@ -16,7 +16,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	"yima_user_app/dao/model"
+	"yima_user_app/dal/model"
 )
 
 func newSysUser(db *gorm.DB, opts ...gen.DOOption) sysUser {

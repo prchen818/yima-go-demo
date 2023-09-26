@@ -2,12 +2,12 @@ package handler
 
 import (
 	"context"
+	"git.horsecoder.com/chenpeiran/yima.demo.news/kitex_gen/yima/news"
 	"github.com/bytedance/gopkg/util/logger"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
-	"yima_user_app/kitex_gen/yima/news"
-	"yima_user_app/rpc"
-	"yima_user_app/service"
+	"yima_user_app/core/yima_user_service"
+	"yima_user_app/domain"
 )
 
 type GetAllNewsByUserResponse struct {
@@ -20,12 +20,12 @@ type GetAllNewsByUserResponse struct {
 func GetAllNewsByUser(ctx context.Context, c *app.RequestContext) {
 	uid := c.Query("uid")
 
-	newss, err := rpc.GetAllNewsByUid(ctx, uid)
+	newss, err := domain.GetAllNewsByUid(ctx, uid)
 	if err != nil {
 		logger.CtxErrorf(ctx, "[GetAllNewsByUser]err: %v", err)
 		return
 	}
-	sysUser, err := service.NewUserService().GetUserInfoByUid(ctx, uid)
+	sysUser, err := yima_user_service.Service.GetUserInfo(ctx, uid)
 	if err != nil {
 		logger.CtxErrorf(ctx, "[GetAllNewsByUser]err: %v", err)
 		return

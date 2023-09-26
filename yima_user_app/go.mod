@@ -3,7 +3,8 @@ module yima_user_app
 go 1.18
 
 require (
-	github.com/apache/thrift v0.13.0
+	github.com/apache/thrift v0.19.0
+	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b
 	github.com/cloudwego/hertz v0.6.8
 	github.com/cloudwego/kitex v0.7.1
 	github.com/hashicorp/consul/api v1.20.0
@@ -16,9 +17,10 @@ require (
 )
 
 require (
+	git.horsecoder.com/chenpeiran/yima.demo.news v0.0.0-20230925085036-8abdf10273c6 // indirect
+	git.horsecoder.com/chenpeiran/yima.demo.user v0.0.0-20230925101125-b263e027c269 // indirect
 	github.com/armon/go-metrics v0.3.10 // indirect
 	github.com/bytedance/go-tagexpr/v2 v2.9.2 // indirect
-	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/chenzhuoyu/iasm v0.9.0 // indirect

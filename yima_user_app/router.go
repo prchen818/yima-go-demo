@@ -4,7 +4,7 @@ package main
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	handler "yima_user_app/biz/handler"
+	"yima_user_app/web/handler"
 )
 
 // customizeRegister registers customize routers.

@@ -3,17 +3,20 @@
 package main
 
 import (
+	"git.horsecoder.com/chenpeiran/yima.demo.user/kitex_gen/yima/demo/user/yimademouser"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/app/server/registry"
 	"github.com/cloudwego/hertz/pkg/common/utils"
+	registry2 "github.com/cloudwego/kitex/pkg/registry"
+	kserver "github.com/cloudwego/kitex/server"
 	"github.com/hashicorp/consul/api"
 	"github.com/hertz-contrib/registry/consul"
-	"yima_user_app/dao"
+	"log"
+	"yima_user_app/integration"
 )
 
 func main() {
 
-	dao.DatabaseInit()
 	config := api.DefaultConfig()
 	config.Address = "127.0.0.1:8500"
 	client, err := api.NewClient(config)
@@ -33,4 +36,18 @@ func main() {
 
 	register(h)
 	h.Spin()
+
+	k := yimademouser.NewServer(
+		new(integration.YimaDemoUserImpl),
+		kserver.WithRegistryInfo(&registry2.Info{
+			ServiceName: "yima.demo.news",
+			Addr:        utils.NewNetAddr("tcp", "127.0.0.1:8889"),
+			Weight:      1,
+		}),
+		// 绑定到内网ip以便consul服务发现
+		kserver.WithServiceAddr(utils.NewNetAddr("tcp", "127.0.0.1:8889")))
+	err = k.Run()
+	if err != nil {
+		log.Println(err.Error())
+	}
 }
